@@ -8,5 +8,7 @@ npm install --legacy-peer-deps
 npm run build
 
 # Prisma generate & push (local binary ব্যবহার)
-npx prisma generate --schema=./prisma/schema
-npx prisma db push --schema=./prisma/schema
+npx prisma generate --schema=prisma/schema
+npx prisma db push --schema=prisma/schema
+
+

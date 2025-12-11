@@ -8,10 +8,10 @@
     "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "db:generate": "prisma generate --schema=./prisma/schema",
-    "db:migrate": "prisma migrate deploy --schema=./prisma/schema",
-    "db:push": "prisma db push --schema=./prisma/schema",
-    "postinstall": "npx prisma generate --schema=./prisma/schema"
+    "db:generate": "prisma generate --schema=prisma/schema",
+    "db:migrate": "prisma migrate deploy --schema=prisma/schema",
+    "db:push": "prisma db push --schema=prisma/schema",
+    "postinstall": "npx prisma generate --schema=prisma/schema"
 
   },
   "dependencies": {
