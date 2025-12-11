@@ -1,0 +1,35 @@
+enum UserRole {
+  TRAVELER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  BLOCKED
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum TravelType {
+  ADVENTURE
+  LEISURE
+  BUSINESS
+  FAMILY
+  SOLO
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+enum PlanStatus {
+  PENDING
+  ONGOING
+  COMPLETED
+}

@@ -1,0 +1,17 @@
+model Review {
+  id           String   @id @default(uuid())
+  reviewerId   String
+  revieweeId   String 
+  travelPlanId String
+  rating       Int 
+  comment      String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  reviewer   Traveler   @relation("ReviewsGiven", fields: [reviewerId], references: [id])
+  reviewee   Traveler   @relation("ReviewsReceived", fields: [revieweeId], references: [id])
+  travelPlan TravelPlan @relation(fields: [travelPlanId], references: [id])
+
+  @@unique([reviewerId, revieweeId, travelPlanId]) // Only one review per person per trip
+  @@map("reviews")
+}

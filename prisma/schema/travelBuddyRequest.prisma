@@ -1,0 +1,15 @@
+model TravelBuddyRequest {
+  id           String        @id @default(uuid())
+  travelPlanId String
+  requesterId  String
+  message      String? // Optional message from requester
+  status       RequestStatus @default(PENDING)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  // Relations
+  travelPlan TravelPlan @relation(fields: [travelPlanId], references: [id])
+  requester  Traveler   @relation("Requester", fields: [requesterId], references: [id])
+
+  @@map("travel_buddy_requests")
+}

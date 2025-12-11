@@ -1,0 +1,67 @@
+// =======================
+//  USERS Model
+// =======================
+model User {
+  id                 String     @id @default(uuid())
+  email              String     @unique
+  password           String
+  role               UserRole   @default(TRAVELER)
+  needPasswordChange Boolean    @default(false)
+  status             UserStatus @default(ACTIVE)
+  isDeleted          Boolean    @default(false)
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+
+  // Relations
+  travelers Traveler?
+  admins    Admin?
+
+  @@map("users")
+}
+
+// =======================
+//  TRAVELER Model
+// =======================
+model Traveler {
+  id               String   @id @default(uuid())
+  name             String?
+  email            String   @unique
+  bio              String?
+  gender           Gender?
+  interests        String[]
+  address          String?
+  visitedCountries String[]
+  profilePhoto     String?
+  isDeleted        Boolean  @default(false)
+  isVerified       Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Relation
+  user            User                 @relation(fields: [email], references: [email])
+  travelPlans     TravelPlan[]
+  sentRequests    TravelBuddyRequest[] @relation("Requester")
+  reviewsGiven    Review[]             @relation("ReviewsGiven")
+  reviewsReceived Review[]             @relation("ReviewsReceived")
+
+  @@map("travelers")
+}
+
+// =======================
+//  ADMIN Model
+// =======================
+model Admin {
+  id            String   @id @default(uuid())
+  name          String?
+  email         String   @unique
+  profilePhoto  String?
+  contactNumber String?
+  isDeleted     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relation
+  user User @relation(fields: [email], references: [email])
+
+  @@map("admins")
+}
